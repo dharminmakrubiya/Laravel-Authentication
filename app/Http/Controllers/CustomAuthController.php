@@ -30,7 +30,7 @@ class CustomAuthController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|confirmed|min:6',
         ]);
         
         $data = $request->all();
@@ -38,6 +38,7 @@ class CustomAuthController extends Controller
         // echo "<pre>";
         // print_r($data);
         // die();
+        // dd($data);
 
         $check = $this->create($data);
 
@@ -63,12 +64,13 @@ class CustomAuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|string|min:6',
         ]);
-   
+        
         $credentials = $request->only('email', 'password');
 
         // echo "<pre>";
         // print_r($credentials);
         // die();
+        // dd($credentials);
 
         if (Auth::attempt($credentials)) {
             return redirect()->intended('dashboard');

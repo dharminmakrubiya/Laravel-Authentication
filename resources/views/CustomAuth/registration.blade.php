@@ -15,6 +15,7 @@
 
 <body>
 
+   
 
     <section class="vh-100" style="background-color: white">
         <div class="container-fluid h-100">
@@ -53,7 +54,7 @@
                                                 @if ($errors->has('email'))
                                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                                                 @endif
-
+                                                
                                             </div>
 
                                         </div>
@@ -63,12 +64,26 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example4c">Password</label>
                                                 <input type="password" name="password" id="form3Example4c"
-                                                    class="form-control" placeholder="password" />
+                                                    class="form-control" @error('password') is-invalid @enderror" placeholder="password" />
 
 
-                                                @if ($errors->has('password'))
-                                                    <span class="text-danger">{{ $errors->first('password') }}</span>
-                                                @endif
+                                                    @error('password')
+                                                    <span class="text-danger" role="alert">
+                                                        {{ $errors->first('password') }}
+                                                    </span>
+                                                    @enderror
+                                            </div>
+
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example4c">Confirmation Password</label>
+                                                <input type="password" name="password_confirmation" id="form3Example4c"
+                                                    class="form-control" placeholder="repeat your password" @error('password') is-invalid @enderror" />
+
+
                                             </div>
 
                                         </div>
@@ -81,7 +96,7 @@
 
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                             <p class="small fw-bold mt-2 pt-1 mb-0">have an account? <a href="{{ route('login') }}"
-                                                class="link-danger">Login</a></p>
+                                                class="link">Login</a></p>
                                         </div>
                                     </form>
 
