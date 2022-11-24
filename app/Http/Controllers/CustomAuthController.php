@@ -51,7 +51,8 @@ class CustomAuthController extends Controller
       return User::create([
         'name' => $data['name'],
         'email' => $data['email'],
-        'password' => Hash::make($data['password'])
+        'password' => Hash::make($data['password']),
+        'status'    =>  1
       ]);
     }    
 
@@ -63,9 +64,12 @@ class CustomAuthController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:6',
+            
         ]);
         
         $credentials = $request->only('email', 'password');
+
+        // $credentials = ['email'=>$request,'password'=>$request,'status'=>1];
 
         // echo "<pre>";
         // print_r($credentials);
