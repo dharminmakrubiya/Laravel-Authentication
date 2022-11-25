@@ -73,10 +73,37 @@ class CustomAuthController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:6',
-            
         ]);
         
-        $credentials = $request->only('email', 'password');
+        // dd($request->toArray());
+        $mk=user::select('status')->where('email',$request->email)->get();
+        // die($mk);
+
+
+        if($mk[0]->status == 0) {
+
+            // echo "<pre>";
+            // print_r($mk->toArray());
+            
+            // dd($mk);
+            
+
+            $credentials = $request->only('email', 'password');
+
+            if (Auth::attempt($credentials)) {
+                // dd($credentials);
+                return redirect()->intended('dashboard');
+
+                  $request->session()->push('Email',$request->email );
+             }else{
+                return redirect("login")->with('message', 'Login details are not valid');
+             }
+  
+       }else{
+        return redirect("login")->with('message', 'Youre already loggedin');
+        }
+        
+        // $credentials = $request->only('email', 'password');
 
         // $credentials = ['email'=>$request,'password'=>$request,'status'=>1];
 
@@ -85,11 +112,11 @@ class CustomAuthController extends Controller
         // die();
         // dd($credentials);
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard');
-        }
+        // if (Auth::attempt($credentials)) {
+        //     return redirect()->intended('dashboard');
+        // }
   
-        return redirect("login")->with('message', 'Login details are not valid');
+        // return redirect("login")->with('message', 'Login details are not valid');
     }
 
 
@@ -111,6 +138,14 @@ class CustomAuthController extends Controller
 
     public function signOut() {
         
+        $mk=Auth::user()->id;
+        // print_r($mk);
+        // die();
+        User::where('id', $mk)
+        ->update([
+           'status' => 0
+        ]);
+        // user::where('id',$mk)->update(['status'=>0]);
         // print_r(Auth::user()->id);
         // die();
         
