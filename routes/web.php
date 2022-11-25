@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Middleware\CustomAuth;
 
 
 /*
@@ -27,7 +28,7 @@ Auth::routes();
 
 //Custom Authentication Roure
 
-Route::group(['middleware'=>"web"],function() {
+Route::group(['middleware'=>'web'],function() {
 
     Route::get('dashboard', [CustomAuthController::class, 'dashboard']); 
 

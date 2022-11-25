@@ -16,11 +16,17 @@ class CustomAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        // echo "Hello This is Middleware";
+
+        echo "Hello this is a middleware";
+
+        // die();
 
         $path = $request->path();
+
+    
+
         // echo $path;
-        if (($path=="login" || $path=="registration")  && Session::get('User'))  {
+        if (($path=="login" || $path=="registration" && Session::get('user')) )  {
             return redirect('dashboard');
         }
 
