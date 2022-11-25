@@ -22,13 +22,15 @@ Route::get('/', function () {
 
 
 //Laravel/UI Package Authentication
-Auth::routes();
+// Auth::routes();
 
 
 
 //Custom Authentication Roure
 
-Route::group(['middleware'=>'web'],function() {
+// Route::group(['middleware'=>'web'],function() {
+
+// Route::group(['middleware' => 'auth'], function ()    {
 
     Route::get('dashboard', [CustomAuthController::class, 'dashboard']); 
 
@@ -43,6 +45,7 @@ Route::group(['middleware'=>'web'],function() {
     Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
     
     
-});
+// });
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

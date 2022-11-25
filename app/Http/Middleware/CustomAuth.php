@@ -17,18 +17,21 @@ class CustomAuth
     public function handle(Request $request, Closure $next)
     {
 
-        echo "Hello this is a middleware";
+        // echo "Hello this is a middleware";
 
         // die();
 
-        $path = $request->path();
+        // $path = $request->path();
 
     
 
         // echo $path;
-        if (($path=="login" || $path=="registration" && Session::get('user')) )  {
-            return redirect('dashboard');
-        }
+        // if (($path=="login" || $path=="registration" && Session::get('user')) )  {
+        //     // die('Middleware worked');
+            
+        //     return redirect('dashboard')->with('message', 'You are alerady Logged-in!');
+            
+        // }
 
         return $next($request);
     }

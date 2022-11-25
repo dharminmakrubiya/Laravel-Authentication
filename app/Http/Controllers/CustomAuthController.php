@@ -6,22 +6,31 @@ use Hash;
 use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\Authenticate;
 
 
 
 class CustomAuthController extends Controller
 {
-    
-
+   
 
     public function index() 
     {
+        if(Auth::check()){
+            return redirect('/dashboard');
+        }
+        // $this->middleware('auth');
+
+
         return view('CustomAuth.login');
     }
 
 
     public function registration()
     {
+        if(Auth::check()){
+            return redirect('/dashboard');
+        }
         return view('CustomAuth.registration');
     }
 
@@ -94,7 +103,7 @@ class CustomAuthController extends Controller
         if(Auth::check()){
             return view('CustomAuth.dashboard');
         }
-  
+        
         return redirect("login");
     }
 
