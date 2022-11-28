@@ -3,12 +3,12 @@
 namespace App\Http\Middleware;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Middleware\Authenticate;
 use Closure;
 use Illuminate\Http\Request;
-use Session;
-class CustomAuth
+
+class UserStatus
 {
+    protected $auth;
     /**
      * Handle an incoming request.
      *
@@ -16,22 +16,24 @@ class CustomAuth
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
+
+     
     public function handle(Request $request, Closure $next)
     {
 
-        // echo "Using Group Middleware";
-        // die();
+        // echo "This is UserStatus Middleware";
+         
 
-        if(Auth::check()){
-            $user = Auth::user();
-            // echo '<pre>';
-            // print_r($user);
-            // die();
-            if($user->status == '0'){
-                Auth::logout();
-            }
-        }
+        // $user = Auth::user();
+        // dd($user);
+
+        //  if(!empty($user) && $user->status == 1){
+        //     return $next($request);
+        // } else {
+        //     return redirect(route('login'));
+        // }
         
+
         return $next($request);
     }
 }

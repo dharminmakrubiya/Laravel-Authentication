@@ -77,21 +77,22 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active"
-                    style="background-image: url('https://source.unsplash.com/LAaSoL0LrYs/1920x1080')">
+                    style="background-image: url('https://unsplash.com/photos/Ou2Z6dxdrmo')">
+                   
                     <div class="carousel-caption">
                         <h5>First slide label</h5>
                         <p>Some representative placeholder content for the first slide.</p>
                     </div>
                 </div>
                 <div class="carousel-item"
-                    style="background-image: url('https://source.unsplash.com/bF2vsubyHcQ/1920x1080')">
+                    style="background-image: url('https://unsplash.com/photos/FV6Pma5U_98')">
                     <div class="carousel-caption">
                         <h5>Second slide label</h5>
                         <p>Some representative placeholder content for the second slide.</p>
                     </div>
                 </div>
                 <div class="carousel-item"
-                    style="background-image: url('https://source.unsplash.com/szFUQoyvrxM/1920x1080')">
+                    style="background-image: url('https://unsplash.com/photos/Vc2dD4l57og')">
                     <div class="carousel-caption">
                         <h5>Third slide label</h5>
                         <p>Some representative placeholder content for the third slide.</p>
@@ -111,8 +112,8 @@
         </div>
     </header>
 
-    <!-- Page Content -->
-    <section class="py-5">
+ <!-- Page Content -->
+ {{-- <section class="py-5">
         <div class="container">
             <h1 class="fw-light">Full Page Image Slider</h1>
             <p class="lead">The background images for the slider are set directly in the HTML using inline CSS. The
@@ -120,7 +121,7 @@
                 in this snippet are from <a href="https://unsplash.com">Unsplash</a>, taken by <a
                     href="https://unsplash.com/@joannakosinska">Joanna Kosinska</a>!</p>
         </div>
-    </section>
+</section>  --}}
 
     <!-- JavaScript Bundle with Popper Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

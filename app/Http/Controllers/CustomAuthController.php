@@ -12,15 +12,14 @@ use App\Http\Middleware\Authenticate;
 
 class CustomAuthController extends Controller
 {
-   
 
     public function index() 
     {
         if(Auth::check()){
             return redirect('/dashboard');
         }
-        // $this->middleware('auth');
-
+        // $this->middleware('status');
+        
 
         return view('CustomAuth.login');
     }
@@ -70,6 +69,7 @@ class CustomAuthController extends Controller
 
     public function customLogin(Request $request)
     {
+        
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:6',
@@ -77,16 +77,10 @@ class CustomAuthController extends Controller
         
         // dd($request->toArray());
         $mk=user::select('status')->where('email',$request->email)->get();
-        // die($mk);
+     
 
 
-        if($mk[0]->status == 0) {
-
-            // echo "<pre>";
-            // print_r($mk->toArray());
-            
-            // dd($mk);
-            
+        if($mk[0]->status == 1) {
 
             $credentials = $request->only('email', 'password');
 
@@ -100,7 +94,7 @@ class CustomAuthController extends Controller
              }
   
        }else{
-        return redirect("login")->with('message', 'Youre already loggedin');
+        return redirect("login")->with('message', 'Login details are not valid');
         }
         
         // $credentials = $request->only('email', 'password');
@@ -138,13 +132,13 @@ class CustomAuthController extends Controller
 
     public function signOut() {
         
-        $mk=Auth::user()->id;
+        // $mk=Auth::user()->id;
         // print_r($mk);
-        // die();
-        User::where('id', $mk)
-        ->update([
-           'status' => 0
-        ]);
+        // // die();
+        // User::where('id', $mk)
+        // ->update([
+        //    'status' => 1
+        // ]);
         // user::where('id',$mk)->update(['status'=>0]);
         // print_r(Auth::user()->id);
         // die();
