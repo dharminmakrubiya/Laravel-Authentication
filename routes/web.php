@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Middleware\CustomAuth;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use App\Http\Controllers\ForgotPasswordController;
 
 
 /*
@@ -44,11 +45,20 @@ Route::group(['middleware'=>['status']],function() {
 
 });
 
-    Route::get('login', [CustomAuthController::class, 'index'])->name('login');
+Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 
-    Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
-    
-    
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
+
+
+//User Forget Password Routes
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+
+//Reset Password
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');    
 
 
 

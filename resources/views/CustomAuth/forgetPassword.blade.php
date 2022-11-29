@@ -29,7 +29,7 @@
     <!-- CSS only Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Custom Authentication</title>
+    <title>Forget Password</title>
 </head>
 
 
@@ -43,25 +43,18 @@
                         class="img-fluid " alt="Sample image">
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <form method="POST" action="{{ route('login.custom') }}">
+                    <form method="POST" action="{{ route('forget.password.post') }}">
 
                         @csrf
 
                         <div class="my-4">
-                            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Log-in</p>
+                            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Forget Your Password</p>
                         </div>
 
                         @if(\Session::has('message'))
-                            <div class="alert alert-danger">
-
-                                {{\Session::get('message')}}
-                            </div>
-                        @endif
-
-                        @if(\Session::has('message_password_reset'))
                             <div class="alert alert-success">
 
-                                {{\Session::get('message_password_reset')}}
+                                {{\Session::get('message')}}
                             </div>
                         @endif
 
@@ -75,34 +68,10 @@
                                 @endif
                         </div>
 
-                        <!-- Password input -->
-                        <div class="form-outline mb-3">
-                            <label class="form-label" for="form3Example4">Password</label>
-                            <input type="password" name="password" id="form3Example4" class="form-control form-control-lg"
-                                placeholder="Enter password" />
-                            @if ($errors->has('password'))
-                                <span class="text-danger">{{ $errors->first('password') }}</span>
-                                @endif
-                        </div>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <!-- Checkbox -->
-                            <div class="form-check mb-0">
-                                <input class="form-check-input me-2" type="checkbox" value=""
-                                    id="form2Example3" />
-                                <label class="form-check-label" for="form2Example3">
-                                    Remember me
-                                </label>
-                                
-                            </div>
-                            <a href="{{ route('forget.password.get') }}" class="text-body">Forgot password?</a>
-                        </div>
                           
                         <div class="text-center text-lg-start mt-4 pt-2">
                             <button type="submit" class="btn btn-primary btn-lg"
-                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{{ route('register-user') }}"
-                                    class="link">Register</a></p>
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Send Password Reset Link</button>
                         </div>
 
                     </form>
