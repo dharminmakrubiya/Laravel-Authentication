@@ -64,7 +64,7 @@
             </div>
         </div>
     </nav>
-    <header>
+    {{-- <header>
 
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -110,7 +110,7 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-    </header>
+    </header> --}}
 
  <!-- Page Content -->
  {{-- <section class="py-5">

@@ -6,6 +6,7 @@ use Hash;
 use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Middleware\Authenticate;
 
 
@@ -49,6 +50,13 @@ class CustomAuthController extends Controller
         // dd($data);
 
         $check = $this->create($data);
+
+        // User Welcome Mail Sending
+        Mail::send('emails.welcomeEmail', $check->toArray(), 
+        function ($message) {
+            $message->to('dharminmakrubiya18@gmail.com', 'Dharmin Makrubiya');
+            $message->subject('Welcome! Thank you so much for Register our website.');
+        });
 
         return redirect("login");
 
